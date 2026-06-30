@@ -1,0 +1,90 @@
+import funcoes_gerais
+from funcoes_gerais import logo
+from funcoes_gerais import limpador
+from cadastro import cadastro_clientes
+from procurar import procurar_clientes
+from atualizar import atualizar_clientes
+from excluir import excluir_cliente
+def modulo_clientes(clientes):
+    decisao_clientes = "0"
+    while decisao_clientes != "5":
+            limpador()
+            logo()
+            print()
+            print()
+            print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+            print("+                           +")
+            print("+      Modulo Clientes      +")
+            print("+                           +")
+            print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+            print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+            print("#############################")
+            print("#                           #")
+            print("#                           #")
+            print("#     1 - Criar Conta       #")
+            print("#     2 - Ver Clientes      #")
+            print("#     3 - Atualizar Usuario #")
+            print("#     4 - Apagar Conta      #")
+            print("#     5 - Sair do Modulo    #")
+            print("#                           #")
+            print("#############################")
+            print("#############################")
+            print()
+            print()
+            decisao_clientes = input("escolha uma das opções listadas: ")
+            if decisao_clientes == "1":
+                limpador()
+                logo()
+                print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+                print("+                           +")
+                print("+      Criação de Conta     +")
+                print("+                           +")
+                print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+                cadastro_clientes(clientes)
+            elif decisao_clientes == "2":
+                limpador()
+                logo()
+                print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+                print("+                           +")
+                print("+      Procurar Clientes    +")
+                print("+                           +")
+                print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+                print()
+                procurar_clientes(clientes)
+            elif decisao_clientes == "3":
+                limpador()
+                logo()
+                print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+                print("+                           +")
+                print("+      Atualização de       +")
+                print("+          Usuario          +")
+                print("+                           +")
+                print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+                print()
+                alteracao = input("digite a senha do usuario para atualização: ")
+                if alteracao in clientes:
+                    print(f"nome do cliente: {clientes[alteracao]["nome"]}")
+                    print(f"email do cliente: {clientes[alteracao]["email"]}")
+                    print(f"telefone do cliente: {clientes[alteracao]["telefone"]}")
+                    print(f"aniversario do cliente: {clientes[alteracao]["aniversario"]}")
+                    print(f"status do cliente: {clientes[alteracao]["status"]}")
+                    print()
+                    continuar = input("aperte <enter> para iniciar as alterações: ")
+                    atualizar_clientes(clientes, alteracao)
+                else:
+                    print("O cliente com status para ser alterado não está cadastrado no sistema")
+                    print()
+                    sair = input("aperte <enter> para sair: ")
+            elif decisao_clientes == "4":
+                limpador()
+                logo()
+                print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+                print("+                           +")
+                print("+      Exclusão de Conta    +")
+                print("+                           +")
+                print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+                print()
+                excluir_cliente(clientes)
+            elif not (decisao_clientes.isdigit()) or (decisao_clientes <= "0" or decisao_clientes > "5"):
+                print("você digitou uma opção invalida, tente digitar uma das opções solicitadas")
+                sair = input("aperte <enter> para voltar")
